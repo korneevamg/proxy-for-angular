@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "projects": {
+    "proxy-for-angular": {
+      "projectType": "application",
+      "root": "apps/proxy-for-angular",
+      "sourceRoot": "apps/proxy-for-angular/src",
+      "prefix": "proxy-for-angular",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/proxy-for-angular",
+            "index": "apps/proxy-for-angular/src/index.html",
+            "main": "apps/proxy-for-angular/src/main.ts",
+            "polyfills": "apps/proxy-for-angular/src/polyfills.ts",
+            "tsConfig": "apps/proxy-for-angular/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/proxy-for-angular/src/favicon.ico",
+              "apps/proxy-for-angular/src/assets"
+            ],
+            "styles": ["apps/proxy-for-angular/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/proxy-for-angular/src/environments/environment.ts",
+                  "with": "apps/proxy-for-angular/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "proxy-for-angular:build:production"
+            },
+            "development": {
+              "browserTarget": "proxy-for-angular:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "proxy-for-angular:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/proxy-for-angular/src/**/*.ts",
+              "apps/proxy-for-angular/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/proxy-for-angular"],
+          "options": {
+            "jestConfig": "apps/proxy-for-angular/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "proxy-for-angular-e2e": {
+      "root": "apps/proxy-for-angular-e2e",
+      "sourceRoot": "apps/proxy-for-angular-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/proxy-for-angular-e2e/cypress.json",
+            "devServerTarget": "proxy-for-angular:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "proxy-for-angular:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/proxy-for-angular-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["proxy-for-angular"]
+    }
+  }
+}

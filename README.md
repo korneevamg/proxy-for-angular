@@ -1,12 +1,14 @@
-# ProxyForAngular
+# How to proxy HTTP requests in Angular
 
 This is a simple Angular project to demonstrate proxy configuration using build-in webpack's dev server. In this project we configure a proxy to send requests to [https://bitcoincharts.com/v1/markets.json](https://bitcoincharts.com/v1/markets.json) from localhost.
 
 ## Quick Start & Documentation
 
 This project was generated using [Nx](https://nx.dev).
+
 [Nx Documentation](https://nx.dev/angular)
-[Angular](https://angular.io)
+
+[Angular Documentation](https://angular.io)
 
 ### Proxy documentation
 
@@ -15,6 +17,7 @@ This project was generated using [Nx](https://nx.dev).
 - [http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware)
 
 Run `npm i` to install all necessary dependencies
+
 Run `nx serve` or `ng serve proxy-for-angular` to start the app
 
 ## Development server

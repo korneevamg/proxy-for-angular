@@ -1,1 +1,27 @@
-<proxy-for-angular-nx-welcome></proxy-for-angular-nx-welcome>
+<p>This is a sample application.</p>
+<p>
+  Basically, the content of this component is of no particular interest. With
+  this app setup I'd like to demonstrate the proxy configuration. For this,
+  check out proxy.conf.js and angular.json.
+</p>
+<div class="bitcoinMarketDateGrid">
+  <p><strong>short name for market</strong></p>
+  <p><strong>highest bid price</strong></p>
+  <p><strong>lowest ask price</strong></p>
+  <p><strong>highest trade during day</strong></p>
+  <p><strong>total trade volume of day in currency</strong></p>
+  <p><strong>total trade volume of day in BTC</strong></p>
+</div>
+<div
+  class="bitcoinMarketDateGrid"
+  *ngFor="let bitcoinDataElement of bitcoinData | async"
+>
+  <p>{{ bitcoinDataElement.symbol }}</p>
+  <p>{{ bitcoinDataElement.bid }}</p>
+  <p>{{ bitcoinDataElement.ask }}</p>
+  <p>{{ bitcoinDataElement.high }}</p>
+  <p>
+    {{ bitcoinDataElement.currency_volume }} {{ bitcoinDataElement.currency }}
+  </p>
+  <p>{{ bitcoinDataElement.volume }}</p>
+</div>
